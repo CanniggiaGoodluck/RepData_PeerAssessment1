@@ -1,22 +1,22 @@
 ---
-title: "Reproducible Research Project 1"
+  title: "Reproducible Research Project 1"
 ---
-
-## Introduction
-It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the “quantified self” movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
+  
+  ## Introduction
+  It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the “quantified self” movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
 
 This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day.
 
 The data for this assignment can be downloaded from the course web site:
-
-* Dataset: [Activity monitoring data](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip) 
+  
+  * Dataset: [Activity monitoring data](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip) 
 
 The variables included in this dataset are:
-
-steps: Number of steps taking in a 5-minute interval (missing values are coded as 𝙽𝙰) </br>
-date: The date on which the measurement was taken in YYYY-MM-DD format </br>
-interval: Identifier for the 5-minute interval in which measurement was taken </br>
-The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset. 
+  
+  steps: Number of steps taking in a 5-minute interval (missing values are coded as 𝙽𝙰) </br>
+  date: The date on which the measurement was taken in YYYY-MM-DD format </br>
+  interval: Identifier for the 5-minute interval in which measurement was taken </br>
+  The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset. 
 
 ## Loading and preprocessing the data
 Unzip data to obtain a csv file.
@@ -67,14 +67,13 @@ head(Total_Steps, 10)
 
 ```r
 ggplot(Total_Steps, aes(x = steps)) +
-    geom_histogram(fill = "blue", binwidth = 1000) +
-    labs(title = "Daily Steps", x = "Steps", y = "Frequency")
+  geom_histogram(fill = "blue", binwidth = 1000) +
+  labs(title = "Daily Steps", x = "Steps", y = "Frequency")
 ```
 
 ```
 ## Warning: Removed 8 rows containing non-finite values (`stat_bin()`).
-```![image](https://github.com/CanniggiaGoodluck/RepData_PeerAssessment1/assets/129808473/bd25fc34-e001-4ca5-b9f5-f2284d987765)
-
+```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
@@ -110,9 +109,9 @@ ggplot(IntervalDT, aes(x = interval , y = steps)) + geom_line(color="blue", size
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
-
-
-```r
+  
+  
+  ```r
 IntervalDT[steps == max(steps), .(max_interval = interval)]
 ```
 
@@ -160,9 +159,9 @@ data.table::fwrite(x = activityDT, file = "data/tidyData.csv", quote = FALSE)
 ```
 
 4. Make a histogram of the total number of steps taken each day and calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
-
-
-```r
+  
+  
+  ```r
 # total number of steps taken per day
 Total_Steps <- activityDT[, c(lapply(.SD, sum)), .SDcols = c("steps"), by = .(date)] 
 
@@ -183,7 +182,7 @@ ggplot(Total_Steps, aes(x = steps)) + geom_histogram(fill = "blue", binwidth = 1
 
 Type of Estimate | Mean_Steps | Median_Steps
 --- | --- | ---
-First Part (with na) | 10765 | 10765
+  First Part (with na) | 10765 | 10765
 Second Part (fillin in na with median) | 9354.23 | 10395
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -226,4 +225,4 @@ IntervalDT <- activityDT[, c(lapply(.SD, mean, na.rm = TRUE)), .SDcols = c("step
 ggplot(IntervalDT , aes(x = interval , y = steps, color=`weekday or weekend`)) + geom_line() + labs(title = "Avg. Daily Steps by Weektype", x = "Interval", y = "No. of Steps") + facet_wrap(~`weekday or weekend` , ncol = 1, nrow=2)
 ```
 
-![plot of chunk unnamed
+![plot of chunk unnamed-chunk-13](fig

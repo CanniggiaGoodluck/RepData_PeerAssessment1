@@ -73,7 +73,8 @@ ggplot(Total_Steps, aes(x = steps)) +
 
 ```
 ## Warning: Removed 8 rows containing non-finite values (`stat_bin()`).
-```
+```![image](https://github.com/CanniggiaGoodluck/RepData_PeerAssessment1/assets/129808473/bd25fc34-e001-4ca5-b9f5-f2284d987765)
+
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
